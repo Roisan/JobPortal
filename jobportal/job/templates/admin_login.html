@@ -1,0 +1,23 @@
+{% load static %}
+
+{% block body %}
+
+{% include 'navigations.html' %}
+
+
+<div style="font-family:'Monotype Corsiva'; font-size:25px; color: white; background-color: black; text-align: center">
+    Admin Login
+</div>
+
+<form class="container mt-5" method="post">
+    {% csrf_token %}
+    <label>Username</label>
+    <input type="text" class="form-control" name="uname" placeholder="Enter Username">
+    <label>Password</label>
+    <input type="password" class="form-control" name="pwd" placeholder="Enter Password">
+
+    <input type="submit" class="btn btn-primary"style="margin-top:2%; color:white; background-color:maroon" value="Login">
+</form>
+
+
+{% endblock %}
