@@ -83,6 +83,20 @@
 
 </form>
 
-{% include 'footer.html '%}
+{% include 'footer.html' %}
+
+{% if error == "no" %}
+<script>
+    alert("Signup Successful");
+    window.location = ('{% url 'user_login' %}');
+</script>
+{% endif %}
+
+{% if error == "yes" %}
+<script>
+    alert("Error, try again");
+</script>
+{% endif %}
 
 {% endblock %}
+
