@@ -12,7 +12,7 @@
 <form class="container mt-5" method="post">
     {% csrf_token %}
     <label>Username</label>
-    <input type="text" class="form-control" name="uname" placeholder="Enter Username">
+    <input type="email" class="form-control" name="uname" placeholder="Enter Username">
     <label>Password</label>
     <input type="password" class="form-control" name="pwd" placeholder="Enter Password">
 
@@ -21,5 +21,18 @@
 </form>
 
 {% include 'footer.html '%}
+
+{% if error == "no" %}
+<script>
+    alert("Login Successful");
+    window.location = ('{% url 'user_home' %}');
+</script>
+{% endif %}
+
+{% if error == "yes" %}
+<script>
+    alert("Invalid credentials");
+</script>
+{% endif %}
 
 {% endblock %}
