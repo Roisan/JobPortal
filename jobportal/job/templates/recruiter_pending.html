@@ -5,7 +5,7 @@
 {% include 'admin_navigations.html' %}
 
 <div style="font-family:'Monotype Corsiva'; font-size:25px; color: white; background-color: black; text-align: center">
-    List of Jobseekers
+    List of Recruiters - Pending Status
 </div>
 
 <hr>
@@ -19,6 +19,7 @@
         <th>Email</th>
         <th>Contact</th>
         <th>Gender</th>
+        <th>Company</th>
         <th>Image</th>
         <th>Action</th>
     </tr>
@@ -32,6 +33,7 @@
         <td>{{i.user.username}}</td>
         <td>{{i.mobile}}</td>
         <td>{{i.gender}}</td>
+        <td>{{i.company}}</td>
         <td><img src="{{i.image.url}}" style="width: 100px; height: 100px;"></td>
         <td><a href="{% url 'delete_user' i.id %}" class="btn btn-danger" onclick="return confirm('Delete user?')">Delete</a></td>
     </tr>

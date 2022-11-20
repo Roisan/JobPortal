@@ -130,6 +130,14 @@ def recruiter_home(request):
     return render(request, 'recruiter_home.html')
 
 
+def recruiter_pending(request):
+    if not request.user.is_authenticated:
+        return redirect('admin_login')
+    data = Recruiter.objects.filter(status='pending')
+    d = {'data': data}
+    return render(request, 'recruiter_pending.html', d)
+
+
 def admin_home(request):
     if not request.user.is_authenticated:
         return redirect('admin_login')
@@ -147,3 +155,11 @@ def view_users(request):
     data = JobSeeker.objects.all()
     d = {'data': data}
     return render(request, 'view_users.html', d)
+
+
+def delete_user(request, pid):
+    if not request.user.is_authenticated:
+        return redirect('admin_login')
+    jseeker = JobSeeker.objects.get(id=pid)
+    jseeker.delete()
+    return redirect('view_users')
