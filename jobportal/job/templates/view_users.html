@@ -1,0 +1,41 @@
+{% load static %}
+
+{% block body %}
+
+{% include 'admin_navigations.html' %}
+
+<div style="font-family:'Monotype Corsiva'; font-size:25px; color: white; background-color: black; text-align: center">
+    List of Jobseekers
+</div>
+
+<hr>
+
+<table class="table table-hover container">
+    <thead>
+    <tr style="background-color: maroon; color: white">
+        <th>No.</th>
+        <th>Name</th>
+        <th>Email</th>
+        <th>Contact</th>
+        <th>Gender</th>
+        <th>Image</th>
+        <th>Action</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    {% for i in data %}
+    <tr>
+        <td>{{forloop.counter}}</td>
+        <td>{{i.user.first_name}} {{i.user.last_name}}</td>
+        <td>{{i.user.username}}</td>
+        <td>{{i.mobile}}</td>
+        <td>{{i.gender}}</td>
+        <td><img src="{{i.image.url}}" style="width: 100px; height: 100px;"></td>
+        <td>{{forloop.counter}}</td>
+    </tr>
+    {% endfor %}
+    </tbody>
+</table>
+
+{% endblock %}

@@ -19,5 +19,17 @@
     <input type="submit" class="btn btn-primary"style="margin-top:2%; color:white; background-color:maroon" value="Login">
 </form>
 
+{% if error == "no" %}
+<script>
+    alert("Login Successful");
+    window.location = ('{% url 'admin_home' %}');
+</script>
+{% endif %}
+
+{% if error == "yes" %}
+<script>
+    alert("Invalid credentials");
+</script>
+{% endif %}
 
 {% endblock %}

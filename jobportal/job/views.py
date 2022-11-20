@@ -11,7 +11,22 @@ def index(request):
 
 
 def admin_login(request):
-    return render(request, 'admin_login.html')
+    error = ""
+    if request.method == 'POST':
+        u = request.POST['uname']
+        p = request.POST['pwd']
+        user = authenticate(username=u, password=p)
+        try:
+            if user.is_staff:
+                login(request, user)
+                error = "no"
+            else:
+                error = "yes"
+        except:
+            error = "yes"
+
+    d = {'error': error}
+    return render(request, 'admin_login.html', d)
 
 
 
@@ -78,6 +93,7 @@ def recruiter_signup(request):
             error = "no"
         except:
             error = "yes"
+
     d = {'error': error}
     return render(request, 'recruiter_signup.html',d)
 
@@ -114,6 +130,20 @@ def recruiter_home(request):
     return render(request, 'recruiter_home.html')
 
 
+def admin_home(request):
+    if not request.user.is_authenticated:
+        return redirect('admin_login')
+    return render(request, 'admin_home.html')
+
+
 def Logout(request):
     logout(request)
     return redirect('index')
+
+
+def view_users(request):
+    if not request.user.is_authenticated:
+        return redirect('admin_login')
+    data = JobSeeker.objects.all()
+    d = {'data': data}
+    return render(request, 'view_users.html', d)
