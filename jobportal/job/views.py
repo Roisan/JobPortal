@@ -2,6 +2,7 @@ from django.shortcuts import render, redirect
 from .models import *
 from django.contrib.auth.models import User
 from django.contrib.auth import authenticate, login, logout
+from datetime import date
 
 # Create your views here.
 
@@ -191,6 +192,39 @@ def recruiter_home(request):
     if not request.user.is_authenticated:
         return redirect('recruiter_login')
     return render(request, 'recruiter_home.html')
+
+
+def add_job(request):
+    if not request.user.is_authenticated:
+        return redirect('recruiter_login')
+    error = ""
+    if request.method == 'POST':
+        jt = request.POST['title']
+        sd = request.POST['startdate']
+        ed = request.POST['enddate']
+        sal = request.POST['salary']
+        lo = request.FILES['logo']
+        exp = request.POST['experience']
+        sk = request.POST['skills']
+        loc = request.POST['location']
+        des = request.POST['desc']
+        user = request.user
+        recruiter = Recruiter.objects.get(user=user)
+
+        try:
+            Job.objects.create(recruiter=recruiter, title=jt, start_date=sd, end_date=ed, salary=sal, image=lo,
+                               description=des, experience=exp, location=loc, skills=sk, creation_date=date.today())
+            error = "no"
+        except:
+            error = "yes"
+    d = {'error': error}
+    return render(request, 'add_job.html', d)
+
+
+def job_list(request):
+    if not request.user.is_authenticated:
+        return redirect('recruiter_login')
+    return render(request, 'job_list.html')
 
 
 def recruiter_pending(request):
