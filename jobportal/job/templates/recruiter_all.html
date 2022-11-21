@@ -20,8 +20,8 @@
         <th>Contact</th>
         <th>Gender</th>
         <th>Company</th>
-        <th>Image</th>
         <th>Status</th>
+        <th>Image</th>
         <th>Action</th>
     </tr>
     </thead>
@@ -37,8 +37,9 @@
         <td>{{i.company}}</td>
         <td>{{i.status}}</td>
         <td><img src="{{i.image.url}}" style="width: 100px; height: 100px;"></td>
-        <td><a href="{% url 'change_status' i.id %}" class="btn btn-success" onclick="return confirm('Change Status?')">Change Status</a></td>
-        | <a href="{% url 'delete_recruiter' i.id %}" class="btn btn-success" onclick="return confirm('Delete user?')">Delete user</a>
+        <td><a href="{% url 'change_status' i.id %}" class="btn btn-success btn-sm p-3" onclick="return confirm('Change Status?')">Change Status</a>
+            <a href="{% url 'delete_recruiter' i.user.id %}" class="btn btn-danger btn-sm p-3" onclick="return confirm('Delete user?')">Delete</a>
+        </td>
     </tr>
     {% endfor %}
     </tbody>

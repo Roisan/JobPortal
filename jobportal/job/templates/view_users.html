@@ -33,7 +33,7 @@
         <td>{{i.mobile}}</td>
         <td>{{i.gender}}</td>
         <td><img src="{{i.image.url}}" style="width: 100px; height: 100px;"></td>
-        <td><a href="{% url 'delete_user' i.id %}" class="btn btn-danger" onclick="return confirm('Delete user?')">Delete</a></td>
+        <td><a href="{% url 'delete_user' i.user.id %}" class="btn btn-danger" onclick="return confirm('Delete user?')">Delete</a></td>
     </tr>
     {% endfor %}
     </tbody>

@@ -29,6 +29,27 @@ def admin_login(request):
     return render(request, 'admin_login.html', d)
 
 
+def change_password_admin(request):
+    error = ""
+    if not request.user.is_authenticated:
+        return redirect('admin_login')
+    if request.method == "POST":
+        old = request.POST['currentpassword']
+        new = request.POST['newpassword']
+        try:
+            u = User.objects.get(id=request.user.id)
+            if u.check_password(old):
+                u.set_password(new)
+                u.save()
+                error = "no"
+            else:
+                error = "not"
+        except:
+            error = "yes"
+    d = {'error': error}
+    return render(request, 'change_password_admin.html', d)
+
+
 
 def user_login(request):
     error = ""
@@ -51,6 +72,27 @@ def user_login(request):
 
     d = {'error': error}
     return render(request, 'user_login.html', d)
+
+
+def change_password_user(request):
+    error = ""
+    if not request.user.is_authenticated:
+        return redirect('user_login')
+    if request.method == "POST":
+        old = request.POST['currentpassword']
+        new = request.POST['newpassword']
+        try:
+            u = User.objects.get(id=request.user.id)
+            if u.check_password(old):
+                u.set_password(new)
+                u.save()
+                error = "no"
+            else:
+                error = "not"
+        except:
+            error = "yes"
+    d = {'error': error}
+    return render(request, 'change_password_user.html', d)
 
 
 def recruiter_login(request):
@@ -96,6 +138,27 @@ def recruiter_signup(request):
 
     d = {'error': error}
     return render(request, 'recruiter_signup.html',d)
+
+
+def change_password_recruiter(request):
+    error = ""
+    if not request.user.is_authenticated:
+        return redirect('recruiter_login')
+    if request.method == "POST":
+        old = request.POST['currentpassword']
+        new = request.POST['newpassword']
+        try:
+            u = User.objects.get(id=request.user.id)
+            if u.check_password(old):
+                u.set_password(new)
+                u.save()
+                error = "no"
+            else:
+                error = "not"
+        except:
+            error = "yes"
+    d = {'error': error}
+    return render(request, 'change_password_recruiter.html', d)
 
 
 def user_signup(request):
@@ -201,7 +264,7 @@ def view_users(request):
 def delete_user(request, pid):
     if not request.user.is_authenticated:
         return redirect('admin_login')
-    jseeker = JobSeeker.objects.get(id=pid)
+    jseeker = User.objects.get(id=pid)
     jseeker.delete()
     return redirect('view_users')
 
@@ -209,6 +272,6 @@ def delete_user(request, pid):
 def delete_recruiter(request, pid):
     if not request.user.is_authenticated:
         return redirect('admin_login')
-    recruiter = Recruiter.objects.get(id=pid)
+    recruiter = User.objects.get(id=pid)
     recruiter.delete()
     return redirect('recruiter_all')
