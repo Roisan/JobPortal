@@ -1,0 +1,38 @@
+{% load static %}
+
+{% block body %}
+
+{% include 'admin_navigations.html' %}
+
+<div style="font-family:'Monotype Corsiva'; font-size:25px; color: white; background-color: black; text-align: center">
+    Change Status
+</div>
+
+<hr>
+
+<form class="container mt-5" method="post">
+    {% csrf_token %}
+    <label>Recruiter</label>
+    <input type="text" class="form-control" name="uname" value="{{recruiter.user.first_name}} {{recruiter.user.last_name}}">
+    <label>Status</label>
+    <select class="form-control" name="status">
+        <option value="Accept">Accept</option>
+        <option value="Reject">Reject</option>
+        <input type="submit" class="btn btn-primary" style="margin-top:2%; color:white; background-color:maroon" value="Change Status">
+    </select>
+</form>
+
+{% if error == "no" %}
+<script>
+    alert("Status Changed Successful");
+    window.location = ('{% url 'recruiter_pending' %}');
+</script>
+{% endif %}
+
+{% if error == "yes" %}
+<script>
+    alert("Error");
+</script>
+{% endif %}
+
+{% endblock %}

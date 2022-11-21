@@ -138,6 +138,47 @@ def recruiter_pending(request):
     return render(request, 'recruiter_pending.html', d)
 
 
+def recruiter_accepted(request):
+    if not request.user.is_authenticated:
+        return redirect('admin_login')
+    data = Recruiter.objects.filter(status='Accept')
+    d = {'data': data}
+    return render(request, 'recruiter_accepted.html', d)
+
+
+def recruiter_rejected(request):
+    if not request.user.is_authenticated:
+        return redirect('admin_login')
+    data = Recruiter.objects.filter(status='Reject')
+    d = {'data': data}
+    return render(request, 'recruiter_rejected.html', d)
+
+
+def recruiter_all(request):
+    if not request.user.is_authenticated:
+        return redirect('admin_login')
+    data = Recruiter.objects.all()
+    d = {'data': data}
+    return render(request, 'recruiter_all.html', d)
+
+
+def change_status(request, pid):
+    error = ""
+    if not request.user.is_authenticated:
+        return redirect('admin_login')
+    recruiter = Recruiter.objects.get(id=pid)
+    if request.method == "POST":
+        s = request.POST['status']
+        recruiter.status = s
+        try:
+            recruiter.save()
+            error = "no"
+        except:
+            error = "yes"
+    d = {'recruiter': recruiter, 'error': error}
+    return render(request, 'change_status.html', d)
+
+
 def admin_home(request):
     if not request.user.is_authenticated:
         return redirect('admin_login')
@@ -163,3 +204,11 @@ def delete_user(request, pid):
     jseeker = JobSeeker.objects.get(id=pid)
     jseeker.delete()
     return redirect('view_users')
+
+
+def delete_recruiter(request, pid):
+    if not request.user.is_authenticated:
+        return redirect('admin_login')
+    recruiter = Recruiter.objects.get(id=pid)
+    recruiter.delete()
+    return redirect('recruiter_all')
