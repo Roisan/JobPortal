@@ -1,0 +1,49 @@
+{% load static %}
+
+{% block body %}
+
+{% include 'user_navigations.html' %}
+
+<div style="font-family:'Monotype Corsiva'; font-size:25px; color: white; background-color: black; text-align: center">
+    Job Listing
+</div>
+
+<hr>
+
+<div class="container">
+<table class="table table-hover" id="example">
+    <thead>
+    <tr style="background-color: maroon; color: white; text-align: center">
+        <th>No.</th>
+        <th>Job Title</th>
+        <th>Company</th>
+        <th>Location</th>
+        <th>Start Date</th>
+        <th>End Date</th>
+        <th>Action</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    {% for i in job %}
+    <tr style="text-align: center">
+        <td>{{forloop.counter}}</td>
+        <td>{{i.title}}</td>
+        <td>{{i.recruiter.company}}</td>
+        <td>{{i.location}}</td>
+        <td>{{i.start_date}}</td>
+        <td>{{i.end_date}}</td>
+
+        {% if i.id in li %}
+        <td>Applied</td>
+        {% else %}
+        <td><a href="{% url 'job_details' i.id %}" class="btn btn-success btn-sm p-3">Apply</a>
+        </td>
+        {% endif %}
+    </tr>
+    {% endfor %}
+    </tbody>
+</table>
+</div>
+
+{% endblock %}

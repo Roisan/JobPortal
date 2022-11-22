@@ -61,13 +61,13 @@
 
 <nav class="navbar navbar-expand-sm" style="background-color: maroon">
     <a class="navbar-brand text-white pl-5 font-weight-bold" style="font-family:'Monotype Corsiva'; font-size:30px">Job Portal</a>
-    <ul class="navbar-nav">
+    <ul class="navbar-nav text-center">
         <li class="nav-item">
-            <a class="nav-link" href="{% url 'user_home' %}"  style="margin-left:500px">Home</a>
+            <a class="nav-link" href="{% url 'user_home' %}"  style="margin-left:600px">Home</a>
         </li>
 
         <li class="nav-item">
-            <a class="nav-link" href="#">Job Listings</a>
+            <a class="nav-link" href="{% url 'user_latest_jobs' %}">Job Listings</a>
         </li>
 
         <li class="nav-item">
@@ -78,7 +78,7 @@
             <a class="nav-link" href="{% url 'Logout' %}">Logout</a>
         </li>
     </ul>
-    <a class="navbar-brand text-white font-weight-bold pl-5" style="font-family:'Monotype Corsiva'; font-size:25px; margin-left: 650px">{{request.user.first_name}} {{request.user.last_name}}</a>
+    <a class="navbar-brand text-white font-weight-bold pl-5" style="font-family:'Monotype Corsiva'; font-size:25px; margin-left: 500px">{{request.user.first_name}} {{request.user.last_name}}</a>
 </nav>
 
 </body>

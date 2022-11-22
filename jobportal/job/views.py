@@ -435,3 +435,43 @@ def latest_jobs(request):
     data = Job.objects.all().order_by('start_date')
     d = {'data': data}
     return render(request, 'latest_jobs.html', d)
+
+
+def user_latest_jobs(request):
+    job = Job.objects.all().order_by('start_date')
+    user = request.user
+    jobseeker = JobSeeker.objects.get(user=user)
+    data = Apply.objects.filter(jobseeker=jobseeker)
+    li = []
+    for i in data:
+        li.append(i.job.id)
+    d = {'job': job, 'li': li}
+    return render(request, 'user_latest_jobs.html', d)
+
+
+def job_details(request, pid):
+    job = Job.objects.get(id=pid)
+    d = {'job': job}
+    return render(request, 'job_details.html', d)
+
+
+def applyforjob(request, pid):
+    if not request.user.is_authenticated:
+        return redirect('user_login')
+    error = ""
+    user = request.user
+    jobseeker = JobSeeker.objects.get(user=user)
+    job = Job.objects.get(id=pid)
+    date1 = date.today()
+    if job.end_date < date1:
+        error = "close"
+    elif job.start_date > date1:
+        error = "notopen"
+    else:
+        if request.method == 'POST':
+            rs = request.FILES['resume']
+            Apply.objects.create(jobseeker=jobseeker, job=job, resume=rs, applydate=date.today())
+            error = "done"
+
+    d = {'error': error}
+    return render(request, 'applyforjob.html', d)
