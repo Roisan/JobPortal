@@ -22,6 +22,7 @@ from django.conf.urls.static import static
 urlpatterns = [
     path('adminpanel/', admin.site.urls),
     path('', index, name="index"),
+    path('latest_jobs', latest_jobs, name="latest_jobs"),
     path('admin_login', admin_login, name="admin_login"),
     path('admin_home', admin_home, name="admin_home"),
     path('change_password_admin', change_password_admin, name="change_password_admin"),

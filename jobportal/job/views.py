@@ -185,13 +185,65 @@ def user_signup(request):
 def user_home(request):
     if not request.user.is_authenticated:
         return redirect('user_login')
-    return render(request, 'user_home.html')
+    user = request.user
+    jobseeker = JobSeeker.objects.get(user=user)
+    error = ""
+    if request.method == 'POST':
+        f = request.POST['fname']
+        l = request.POST['lname']
+        con = request.POST['contact']
+        gen = request.POST['gender']
+        jobseeker.user.first_name = f
+        jobseeker.user.last_name = l
+        jobseeker.mobile = con
+        jobseeker.gender = gen
+        try:
+            jobseeker.save()
+            jobseeker.user.save()
+            error = "no"
+        except:
+            error = "yes"
+        try:
+            i = request.FILES['image']
+            jobseeker.image = i
+            jobseeker.save()
+            error = "no"
+        except:
+            pass
+    d = {'jobseeker': jobseeker, 'error': error}
+    return render(request, 'user_home.html', d)
 
 
 def recruiter_home(request):
     if not request.user.is_authenticated:
         return redirect('recruiter_login')
-    return render(request, 'recruiter_home.html')
+    user = request.user
+    recruiter = Recruiter.objects.get(user=user)
+    error = ""
+    if request.method == 'POST':
+        f = request.POST['fname']
+        l = request.POST['lname']
+        con = request.POST['contact']
+        gen = request.POST['gender']
+        recruiter.user.first_name = f
+        recruiter.user.last_name = l
+        recruiter.mobile = con
+        recruiter.gender = gen
+        try:
+            recruiter.save()
+            recruiter.user.save()
+            error = "no"
+        except:
+            error = "yes"
+        try:
+            i = request.FILES['image']
+            recruiter.image = i
+            recruiter.save()
+            error = "no"
+        except:
+            pass
+    d = {'recruiter': recruiter, 'error': error}
+    return render(request, 'recruiter_home.html', d)
 
 
 def add_job(request):
@@ -209,7 +261,7 @@ def add_job(request):
         loc = request.POST['location']
         des = request.POST['desc']
         user = request.user
-
+        recruiter = Recruiter.objects.get(user=user)
 
         try:
             Job.objects.create(recruiter=recruiter, title=jt, start_date=sd, end_date=ed, salary=sal, image=lo,
@@ -377,3 +429,9 @@ def delete_recruiter(request, pid):
     recruiter = User.objects.get(id=pid)
     recruiter.delete()
     return redirect('recruiter_all')
+
+
+def latest_jobs(request):
+    data = Job.objects.all().order_by('start_date')
+    d = {'data': data}
+    return render(request, 'latest_jobs.html', d)
