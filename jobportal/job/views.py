@@ -209,7 +209,7 @@ def add_job(request):
         loc = request.POST['location']
         des = request.POST['desc']
         user = request.user
-        recruiter = Recruiter.objects.get(user=user)
+
 
         try:
             Job.objects.create(recruiter=recruiter, title=jt, start_date=sd, end_date=ed, salary=sal, image=lo,
@@ -224,7 +224,75 @@ def add_job(request):
 def job_list(request):
     if not request.user.is_authenticated:
         return redirect('recruiter_login')
-    return render(request, 'job_list.html')
+    user = request.user
+    recruiter = Recruiter.objects.get(user=user)
+    job = Job.objects.filter(recruiter=recruiter)
+    d ={'job':job}
+    return render(request, 'job_list.html',d)
+
+
+def edit_job_details(request, pid):
+    if not request.user.is_authenticated:
+        return redirect('recruiter_login')
+    error = ""
+    job = Job.objects.get(id=pid)
+    if request.method == 'POST':
+        jt = request.POST['title']
+        sd = request.POST['startdate']
+        ed = request.POST['enddate']
+        sal = request.POST['salary']
+        exp = request.POST['experience']
+        sk = request.POST['skills']
+        loc = request.POST['location']
+        des = request.POST['desc']
+
+        job.title = jt
+        job.salary = sal
+        job.experience = exp
+        job.skills = sk
+        job.location = loc
+        job.description = des
+
+        if sd:
+            try:
+                job.start_date = sd
+            except:
+                pass
+        else:
+            pass
+
+        if ed:
+            try:
+                job.end_date = ed
+            except:
+                pass
+        else:
+            pass
+
+        try:
+            job.save()
+            error = "no"
+        except:
+            error = "yes"
+    d = {'error': error, 'job': job}
+    return render(request, 'edit_job_details.html', d)
+
+
+def change_company_logo(request, pid):
+    if not request.user.is_authenticated:
+        return redirect('recruiter_login')
+    error = ""
+    job = Job.objects.get(id=pid)
+    if request.method == 'POST':
+        cl = request.FILES['logo']
+        job.image = cl
+        try:
+            job.save()
+            error = "no"
+        except:
+            error = "yes"
+    d = {'error': error, 'job': job}
+    return render(request, 'change_company_logo.html', d)
 
 
 def recruiter_pending(request):

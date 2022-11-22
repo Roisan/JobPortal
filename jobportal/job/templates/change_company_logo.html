@@ -1,0 +1,49 @@
+{% load static %}
+
+{% block body %}
+
+{% include 'recruiter_navigations.html' %}
+
+
+<div style="font-family:'Monotype Corsiva'; font-size:25px; color: white; background-color: black; text-align: center">
+    Change Company Logo
+</div>
+
+<form class="container mt-5" name="signup" method="post" onsubmit="return checkPwd()" enctype="multipart/form-data">
+    {% csrf_token %}
+
+    <div class="form-row">
+        <div class="form-group col-md-12">
+            <label>Job Title</label>
+            <input type="text" class="form-control" name="title" value="{{job.title}}" readonly>
+        </div>
+    </div>
+
+    <div class="form-group col-md-12">
+        <img src="{{job.image.url}}" width="100" height="100">Company Logo
+    </div>
+
+
+    <div class="form-group col-md-12">
+        <label>Company Logo</label>
+        <input type="file" class="form-control" name="logo" required>
+    </div>
+
+    <input type="Submit" value="Edit" class="btn btn-primary">
+
+</form>
+
+{% if error == "no" %}
+<script>
+    alert("Company Logo Updated");
+    window.location = ('{% url 'change_company_logo' job.id %}');
+</script>
+{% endif %}
+
+{% if error == "yes" %}
+<script>
+    alert("Error, try again");
+</script>
+{% endif %}
+
+{% endblock %}
