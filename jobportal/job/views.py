@@ -283,6 +283,14 @@ def job_list(request):
     return render(request, 'job_list.html',d)
 
 
+def job_list_admin(request):
+    if not request.user.is_authenticated:
+        return redirect('admin_login')
+    data = Job.objects.all().order_by('start_date')
+    d = {'data': data}
+    return render(request, 'job_list_admin.html', d)
+
+
 def edit_job_details(request, pid):
     if not request.user.is_authenticated:
         return redirect('recruiter_login')
@@ -408,7 +416,10 @@ def change_status(request, pid):
 def admin_home(request):
     if not request.user.is_authenticated:
         return redirect('admin_login')
-    return render(request, 'admin_home.html')
+    rcount = Recruiter.objects.all().count()
+    ucount = JobSeeker.objects.all().count()
+    d = {'rcount': rcount, 'ucount': ucount}
+    return render(request, 'admin_home.html', d)
 
 
 def Logout(request):
@@ -431,6 +442,21 @@ def delete_user(request, pid):
     jseeker.delete()
     return redirect('view_users')
 
+
+def delete_job(request, pid):
+    if not request.user.is_authenticated:
+        return redirect('recruiter_login')
+    job = Job.objects.get(id=pid)
+    job.delete()
+    return redirect('job_list')
+
+
+def delete_job_admin(request, pid):
+    if not request.user.is_authenticated:
+        return redirect('admin_login')
+    job = Job.objects.get(id=pid)
+    job.delete()
+    return redirect('job_list_admin')
 
 def delete_recruiter(request, pid):
     if not request.user.is_authenticated:

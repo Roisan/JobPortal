@@ -2,7 +2,7 @@
 
 {% block body %}
 
-{% include 'recruiter_navigations.html' %}
+{% include 'admin_navigations.html' %}
 
 <div style="font-family:'Monotype Corsiva'; font-size:25px; color: white; background-color: black; text-align: center">
     List of Posted Jobs
@@ -22,13 +22,12 @@
     </thead>
 
     <tbody>
-    {% for i in job %}
+    {% for i in data %}
     <tr style="text-align: center">
         <td>{{forloop.counter}}</td>
         <td>{{i.title}}</td>
         <td>{{i.creation_date}}</td>
-        <td><a href="{% url 'edit_job_details' i.id %}" class="btn btn-success btn-sm p-3" onclick="return confirm('Edit details?')">Edit</a>
-            <a href="{% url 'delete_job' i.id %}" class="btn btn-danger" onclick="return confirm('Delete job?')">Delete</a>
+        <td><a href="{% url 'delete_job_admin' i.id %}" class="btn btn-danger" onclick="return confirm('Delete job?')">Delete</a>
         </td>
     </tr>
     {% endfor %}

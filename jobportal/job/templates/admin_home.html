@@ -4,6 +4,28 @@
 
 {% include 'admin_navigations.html' %}
 
+<div style="font-family:'Monotype Corsiva'; font-size:25px; color: white; background-color: black; text-align: center">
+    Admin Home
+</div>
+
+<hr>
+
+<div class="container mt-5 shadow-lg">
+    <br>
+    <div class="row mt-5">
+        <div class="col-sm-6">
+            <h4 class="text-center"><i class="fa fa-user"></i> Total Recruiters</h4>
+            <p class="text-center font-weight-bold">{{rcount}}</p>
+        </div>
+
+        <div class="col-sm-6">
+            <h4 class="text-center"><i class="fa fa-user"></i> Total Users</h4>
+            <p class="text-center font-weight-bold">{{ucount}}</p>
+        </div>
+    </div>
+
+</div>
+
 
 
 {% endblock %}
