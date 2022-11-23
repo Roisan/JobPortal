@@ -347,6 +347,15 @@ def change_company_logo(request, pid):
     return render(request, 'change_company_logo.html', d)
 
 
+def applied_candidates_list(request):
+    if not request.user.is_authenticated:
+        return redirect('recruiter_login')
+
+    data = Apply.objects.all()
+    d = {'data': data}
+    return render(request, 'applied_candidates_list.html', d)
+
+
 def recruiter_pending(request):
     if not request.user.is_authenticated:
         return redirect('admin_login')

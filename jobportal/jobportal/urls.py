@@ -32,6 +32,7 @@ urlpatterns = [
     path('user_latest_jobs', user_latest_jobs, name="user_latest_jobs"),
     path('job_details/<int:pid>', job_details, name="job_details"),
     path('applyforjob/<int:pid>', applyforjob, name="applyforjob"),
+    path('applied_candidates_list', applied_candidates_list, name="applied_candidates_list"),
     path('change_password_user', change_password_user, name="change_password_user"),
     path('recruiter_login', recruiter_login, name="recruiter_login"),
     path('recruiter_signup', recruiter_signup, name="recruiter_signup"),
