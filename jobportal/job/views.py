@@ -451,12 +451,21 @@ def delete_job(request, pid):
     return redirect('job_list')
 
 
+def delete_candidate(request, pid):
+    if not request.user.is_authenticated:
+        return redirect('recruiter_login')
+    apply = Apply.objects.get(id=pid)
+    apply.delete()
+    return redirect('applied_candidates_list')
+
+
 def delete_job_admin(request, pid):
     if not request.user.is_authenticated:
         return redirect('admin_login')
     job = Job.objects.get(id=pid)
     job.delete()
     return redirect('job_list_admin')
+
 
 def delete_recruiter(request, pid):
     if not request.user.is_authenticated:

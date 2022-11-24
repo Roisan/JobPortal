@@ -40,6 +40,7 @@ urlpatterns = [
     path('job_list', job_list, name="job_list"),
     path('job_list_admin', job_list_admin, name="job_list_admin"),
     path('delete_job/<int:pid>', delete_job, name="delete_job"),
+    path('delete_candidate/<int:pid>', delete_candidate, name="delete_candidate"),
     path('delete_job_admin/<int:pid>', delete_job_admin, name="delete_job_admin"),
     path('change_company_logo/<int:pid>', change_company_logo, name="change_company_logo"),
     path('edit_job_details/<int:pid>', edit_job_details, name="edit_job_details"),

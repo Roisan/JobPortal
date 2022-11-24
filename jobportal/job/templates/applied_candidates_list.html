@@ -38,7 +38,7 @@
         <td>{{i.job.recruiter.company}}</td>
         <td>{{i.applydate}}</td>
         <td><a href="{{i.resume.url}}">Download Resume</a></td>
-        <!--<td><a href="{% url 'change_status_user' i.id %}" class="btn btn-danger">Approve</a>-->
+        <td><a href="{% url 'delete_candidate' i.id %}" class="btn btn-danger">Delete</a>
         </td>
     </tr>
     {% endif %}
