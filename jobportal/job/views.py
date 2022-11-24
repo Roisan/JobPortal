@@ -174,7 +174,7 @@ def user_signup(request):
         gen = request.POST['gender']
         try:
             user = User.objects.create_user(first_name=f, last_name=l, username=e, password=p)
-            JobSeeker.objects.create(user=user, mobile=con, image=i, gender=gen, type="jobseeker")
+            JobSeeker.objects.create(user=user, mobile=con, image=i, gender=gen, type="jobseeker", status="na")
             error = "no"
         except:
             error = "yes"

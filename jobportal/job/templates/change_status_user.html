@@ -1,0 +1,38 @@
+{% load static %}
+
+{% block body %}
+
+{% include 'recruiter_navigations.html' %}
+
+<div style="font-family:'Monotype Corsiva'; font-size:25px; color: white; background-color: black; text-align: center">
+    Approval Page
+</div>
+
+<hr>
+
+<form class="container mt-5" method="post">
+    {% csrf_token %}
+    <label>Jobseeker</label>
+    <input type="text" class="form-control" name="uname" value="{{jobseeker.user.first_name}} {{jobseeker.user.last_name}}">
+    <label>Status</label>
+    <select class="form-control" name="status">
+        <option value="Accept">Accept</option>
+        <option value="Reject">Reject</option>
+        <input type="submit" class="btn btn-primary" style="margin-top:2%; color:white; background-color:maroon" value="Choose">
+    </select>
+</form>
+
+{% if error == "no" %}
+<script>
+    alert("Status Changed Successful");
+    window.location = ('{% url 'applied_candidates_list' %}');
+</script>
+{% endif %}
+
+{% if error == "yes" %}
+<script>
+    alert("Error");
+</script>
+{% endif %}
+
+{% endblock %}
