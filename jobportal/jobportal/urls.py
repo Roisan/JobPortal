@@ -51,6 +51,7 @@ urlpatterns = [
     path('recruiter_home', recruiter_home, name="recruiter_home"),
     path('change_password_recruiter', change_password_recruiter, name="change_password_recruiter"),
     path('change_status/<int:pid>', change_status, name="change_status"),
+    path('change_status_user/<int:pid>', change_status_user, name="change_status_user"),
     path('view_users', view_users, name="view_users"),
     path('delete_user/<int:pid>', delete_user, name="delete_user"),
     path('delete_recruiter/<int:pid>', delete_recruiter, name="delete_recruiter"),

@@ -5,7 +5,7 @@
 {% include 'navigations.html' %}
 
 
-<div style="font-family:'Monotype Corsiva'; font-size:25px; color: white; background-color: black; text-align: center">
+<div class="bef_log_page" style="font-family:'Monotype Corsiva'; font-size:25px; color: white; background-color: black; text-align: center" value="admin_login">
     Admin Login
 </div>
 
@@ -31,5 +31,27 @@
     alert("Invalid credentials");
 </script>
 {% endif %}
+{% include 'footer.html' %}
+<script>
+if($(".bef_log_page").attr("value")=="user_login"){
+	$(".user_login").attr("style","border-bottom:2px solid black;");
+}
+else if($(".bef_log_page").attr("value")=="latest_jobs"){
+	$(".latest_jobs").attr("style","border-bottom:2px solid black;");
+}
+else if($(".bef_log_page").attr("value")=="recruiter_login"){
+	$(".recruiter_login").attr("style","border-bottom:2px solid black;");
+}
+else if($(".bef_log_page").attr("value")=="admin_login"){
+	$(".admin_login").attr("style","border-bottom:2px solid black;");
+}
+else if($(".bef_log_page").attr("value")=="home"){
+	$(".home").attr("style","border-bottom:2px solid black;");
+}
+else{
+	$(".home").attr("style","border-bottom:2px solid black;");
+}
+$('body').attr('style','background:#5a451b4f');
 
+</script>
 {% endblock %}

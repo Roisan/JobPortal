@@ -51,7 +51,6 @@ def change_password_admin(request):
     return render(request, 'change_password_admin.html', d)
 
 
-
 def user_login(request):
     error = ""
     if request.method == "POST":
@@ -174,7 +173,7 @@ def user_signup(request):
         gen = request.POST['gender']
         try:
             user = User.objects.create_user(first_name=f, last_name=l, username=e, password=p)
-            JobSeeker.objects.create(user=user, mobile=con, image=i, gender=gen, type="jobseeker", status="na")
+            JobSeeker.objects.create(user=user, mobile=con, image=i, gender=gen, type="jobseeker")
             error = "no"
         except:
             error = "yes"
@@ -360,7 +359,8 @@ def applied_candidates_list(request):
         return redirect('recruiter_login')
 
     data = Apply.objects.all()
-    d = {'data': data}
+    data2 = JobStatus.objects.all()
+    d = {'data': data, 'data2':data2}
     return render(request, 'applied_candidates_list.html', d)
 
 
@@ -411,6 +411,22 @@ def change_status(request, pid):
             error = "yes"
     d = {'recruiter': recruiter, 'error': error}
     return render(request, 'change_status.html', d)
+
+
+def change_status_user(request, pid):
+    if not request.user.is_authenticated:
+        return redirect('recruiter_login')
+    error = ""
+    apply = Apply.objects.get(id=pid)
+    if request.method == 'POST':
+        s = request.POST['status']
+        try:
+            JobStatus.objects.create(apply=apply, jobseeker=apply.jobseeker, status=s)
+            error = "no"
+        except:
+            error = "yes"
+    d = {'error': error}
+    return render(request, 'change_status_user.html', d)
 
 
 def admin_home(request):
@@ -485,11 +501,25 @@ def user_latest_jobs(request):
     job = Job.objects.all().order_by('start_date')
     user = request.user
     jobseeker = JobSeeker.objects.get(user=user)
-    data = Apply.objects.filter(jobseeker=jobseeker)
+    data2 =Apply.objects.filter(jobseeker=jobseeker)
+    data = JobStatus.objects.filter(jobseeker=jobseeker)
     li = []
-    for i in data:
+    ai = []
+    ri = []
+    for i in data2:
         li.append(i.job.id)
-    d = {'job': job, 'li': li}
+    for i in data:
+        if i.status == "Accept":
+            ai.append(i.apply.job.id)
+            if i.apply.job.id in ri:
+                ri.remove(i.apply.job.id)
+                # li.remove(i.apply.job.id)
+        elif i.status == "Reject":
+            ri.append(i.apply.job.id)
+            if i.apply.job.id in ai:
+                ai.remove(i.apply.job.id)
+                # li.remove(i.apply.job.id)
+    d = {'job': job, 'li': li, 'ai':ai, 'ri':ri}
     return render(request, 'user_latest_jobs.html', d)
 
 

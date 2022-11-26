@@ -4,6 +4,7 @@
 
 {% include 'recruiter_navigations.html' %}
 
+
 <div style="font-family:'Monotype Corsiva'; font-size:25px; color: white; background-color: black; text-align: center">
     List of Applied Candidates
 </div>
@@ -11,7 +12,7 @@
 <hr>
 
 <div class="container">
-<table class="table table-hover" id="example">
+<table class="table table-lg table-hover" id="example">
     <thead>
     <tr style="background-color: maroon; color: white; text-align: center">
         <th>No.</th>
@@ -19,7 +20,6 @@
         <th>Email</th>
         <th>Contact No.</th>
         <th>Job Title</th>
-        <th>Company</th>
         <th>Applied Date</th>
         <th>Resume</th>
         <th>Action</th>
@@ -35,14 +35,15 @@
         <td>{{i.jobseeker.user.username}}</td>
         <td>{{i.jobseeker.mobile}}</td>
         <td>{{i.job.title}}</td>
-        <td>{{i.job.recruiter.company}}</td>
         <td>{{i.applydate}}</td>
         <td><a href="{{i.resume.url}}">Download Resume</a></td>
-        <td><a href="{% url 'delete_candidate' i.id %}" class="btn btn-danger">Delete</a>
+        <td><a href="{% url 'change_status_user' i.id %}" class="btn btn-success btn-sm p-3" onclick="return confirm('Change Status?')">Change Status</a>
+            <a href="{% url 'delete_candidate' i.id %}" class="btn btn-danger btn-sm p-3" onclick="return confirm('Delete application?')">Delete</a>
         </td>
+        {% endif %}
+        {% endfor %}
     </tr>
-    {% endif %}
-    {% endfor %}
+
     </tbody>
 </table>
 </div>

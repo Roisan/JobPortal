@@ -52,3 +52,12 @@ class Apply(models.Model):
 
     def _str_(self):
         return self.id
+
+
+class JobStatus(models.Model):
+    apply = models.ForeignKey(Apply, on_delete=models.CASCADE)
+    jobseeker = models.ForeignKey(JobSeeker, on_delete=models.CASCADE)
+    status = models.CharField(max_length=50)
+
+    def _str_(self):
+        return self.id

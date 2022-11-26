@@ -13,13 +13,13 @@
 <form class="container mt-5" method="post">
     {% csrf_token %}
     <label>Jobseeker</label>
-    <input type="text" class="form-control" name="uname" value="{{jobseeker.user.first_name}} {{jobseeker.user.last_name}}">
+    <input type="text" class="form-control" name="uname" value="{{apply.jobseeker.user.first_name}} {{apply.jobseeker.user.last_name}}">
     <label>Status</label>
     <select class="form-control" name="status">
         <option value="Accept">Accept</option>
         <option value="Reject">Reject</option>
-        <input type="submit" class="btn btn-primary" style="margin-top:2%; color:white; background-color:maroon" value="Choose">
     </select>
+    <input type="submit" class="btn btn-primary" style="margin-top:2%; color:white; background-color:maroon" value="Choose">
 </form>
 
 {% if error == "no" %}

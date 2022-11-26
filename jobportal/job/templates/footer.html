@@ -1,27 +1,72 @@
 {% load static %}
+<style>
+.footer_header_color{
+	color: rgba(244, 211, 190, 0.6);
+	font-weight: 600;
+	font-size: 27px;
+}
 
-<div class="mt-5" style="background-color: black; width: 100%; height: 350px">
+.footer_content_color{
+	color: #ece2e2;;
+	font-size: 15px;
+	}
+.footer_anchor_icon{
+color:black;
+background-color: #6c573f;
+border-radius: 50%;
+border: none;
+margin-right:2px;
+padding: 0px;}
+
+.footer_icon{
+	padding: 4px;
+	border: 2px solid #6c573f;
+	border-radius: 50%;
+	background-color: #6c573f;
+	}
+</style>
+
+<div class="" style="background-color: #6c573f; width: 100%; height: 320px;font-family: 'Monotype Corsiva';">
     <div class="container">
         <div class="row">
             <div class="col-md-4 mt-3">
-                <h3 class="text-white">Contact Information</h3>
-                <p style ="color:white; font-size: 20px"><i class="fa fa-map-marker"> Address </i></p>
-                <p style ="color:white; font-size: 20px"><i class="fa fa-address-card"></i> nirdosh.1.thakur@gmail.com </p>
-                <p style ="color:white; font-size: 20px"><i class="fa fa-phone"></i> Phone Number 1/ Phone Number 2</p>
+                <h3 class="footer_header_color">Contact Information</h3>
+                <div class="footer_content_color" style="display: flex;">
+                  <div style="padding-top: 5px;padding-right: 15px;"><div><i class="fa fa-map-marker"></i></div>
+                  </div><div style=""> NH 66, Srinivasnagar, Surathkal, Mangaluru, Karnataka 575025 </div></div>
+                <p class="footer_content_color" style="padding-top: 7px;"><i class="fa fa-address-card" style="padding-right: 2px;"></i> nirdosh.1.thakur@gmail.com </p>
+                <p class="footer_content_color"><i class="fa fa-phone" style="padding-right: 6px;"></i> 9418563298/ 7876135476</p>
             </div>
             <div class="col-md-4 mt-3">
-                <h3 class="text-white">Online Placement</h3>
-                <p style ="color:white; font-size: 20px">Some description</p>
+                <h3 class="footer_header_color" style="text-align:center;">Reach Us</h3>
+                <div class="mt-4">
+            <span style="font-weight: bold; font-size: 30px;">
+                <span style="display: flex; justify-content:space-evenly;">
+                    <a class="footer_anchor_icon"><i class="fa fa-twitter pl-1 footer_icon"></i></a>
+                    <a class="footer_anchor_icon"><i class="fa fa-linkedin pl-1 footer_icon"></i></a>
+                    <a class="footer_anchor_icon"><i class="fa fa-instagram pl-1 footer_icon"></i></a>
+                    <a class="footer_anchor_icon"><i class="fa fa-github pl-1 footer_icon"></i></a>
+                    <a class="footer_anchor_icon"><i class="fa fa-youtube-play pl-1 footer_icon"></i></a>
+                    <a class="footer_anchor_icon"><i class="fa fa-whatsapp pl-1 footer_icon"></i></a>
+                </span>
+            </span>
+        </div>
             </div>
             <div class="col-md-4 mt-3">
-                <h3 class="text-white">Online Placement</h3>
-                <p style ="color:white; font-size: 20px">For more information send your contact email</p>
-                <form method="post" class="form-inline">
-                    {% csrf_token %}
-                    <input type="email" name="emailid" placeholder="EmailID" required class="form-control mr-2">
-                    <input type="submit" value="Send" class="btn btn-primary">
-                </form>
+                <h3 class="footer_header_color">Feed Back</h3>
+                <p class=footer_content_color>Your feedback is valuable to us.</p>
+                <textarea rows="5" placeholder="Feedback" maxlength="1000" minlength="100" class="form-control mr-2" style="height: 105px;" columne="55"></textarea>
+<form method="post" class="form-inline" style="padding-top: 10px;">
+<input type="submit" value="Send" style="color: #31312f;background: bisque;border: none;font-weight: 600;" class="btn">
+</form>
             </div>
         </div>
+<div style="display: flex;justify-content: center;border-top: 1px solid #5b4d31;" class="row mt-1">
+    
+    <span style="font-weight: 600;">JobPortal</span>
+</div>
+<div style="display: flex;justify-content: center;" class="row">
+    <span style="--tw-text-opacity: 1;color: rgba(175,179,188,var(--tw-text-opacity));font-size: small;">Copyright 2022 JobPortal | All rights reserved.</span>
+</div>
     </div>
 </div>

@@ -21,65 +21,105 @@
 }
 
 .nav-link:hover{
-    color:yellow !important;
+    color:chocolate !important;
     font-weight: bold;
-    background-color: red;
-    border-radius: 10px;
+    background-color: #aa9a87;
 }
 
 .navbar-brand:hover{
-    color:yellow !important
+    color:bisque !important
 }
 
+.topbefnav a:link {
+  color: #1f87a2;
+  background-color: transparent;
+  text-decoration: none;
+}
+
+.topbefnav a:visited {
+  color: #1f87a2;
+  background-color: transparent;
+  text-decoration: none;
+}
+
+.topbefnav a:hover {
+  color: green;
+  background-color: transparent;
+  text-decoration: underline;
+}
 </style>
 
-<div class ="container">
-    <div class ="row">
-        <div class = "col-sm-3">
-            <img src = "{% static 'images/job_search.png' %}" style="width: 200px; height: 180px">
+<div class="row topbefnav" style="
+	font-family: 'Monotype Corsiva';
+    padding: 0px;
+    display: flex;
+    margin: 0px !important;
+	justify-content:flex-end;
+    width: 100%;
+    align-items: center;
+">
+    <div class="row" style="align-items:center;height: 105px;width: 100%;padding-right: 0px;background: azure;margin-right: 0px;margin-top: -14px;">
+        <div class="col-sm-0" style="
+    display: none;
+    height: inherit;
+    align-items: end;
+    justify-content: end;
+">
+            <img src="/static/images/logo1.png" style="width: 160px;height: 100px;">
         </div>
 
-        <div class = "col-sm-6 mt-5 text-center">
-            <span style="font-weight: bold; font-size: 30px" >
-                <span style = "color: red">Online Job</span>
-                <span style = "color: green">Portal System</span>
+        <div class="col-sm-8 text-center" style="
+    height: inherit;
+    display: flex;
+    justify-content: flex-start;
+    align-items: flex-end;
+    padding-left: 4rem;
+">
+    <img src="/static/images/logo1.png" style="width: 160px;height: 100px;margin-bottom: -7px;">
+            <span style="font-weight: bold;font-size: 30px;font-family: &quot;Times New Roman&quot;, Times, serif;display: none;">
+                <span style="color: #8603a0">Online Job</span>
+                <span style="color: #0895d5">Portal System</span>
             </span>
         </div>
 
-        <div class = "col-sm-3 mt-5 text-right" style = "padding-left: 10%">
-            <span style="font-weight: bold; font-size: 30px">
+        <div class="col-sm-4 text-right" style="padding-left: 10%;height: inherit;display: flex;justify-content: end;align-items: flex-end;">
+            <span style="font-weight: bold;font-size: 30px;color: #1f87a2;padding-bottom: 1rem;padding-right:1rem;">
                 <span>
-                    <i class ="fa fa-twitter pl-1"></i>
-                    <i class ="fa fa-linkedin pl-1"></i>
-                    <i class ="fa fa-instagram pl-1"></i>
-                    <i class ="fa fa-telegram pl-1"></i>
+                    <a href="https://twitter.com/home"><i class="fa fa-twitter pl-1"></i></a>
+                    <a href="/"><i class="fa fa-linkedin pl-1"></i></a>
+                    <a href="https://www.instagram.com/nirdosht__/?hl=en"><i class="fa fa-instagram pl-1"></i></a>
+                    <a href="https://telegram.org/"><i class="fa fa-telegram pl-1"></i></a>
                 </span>
             </span>
         </div>
     </div>
 </div>
 
-<nav class="navbar navbar-expand-sm" style="background-color: maroon">
-    <a class="navbar-brand text-white pl-5 font-weight-bold" style="font-family:'Monotype Corsiva'; font-size:30px">Job Portal</a>
-    <ul class="navbar-nav">
+
+<nav class="navbar navbar-expand-sm" style="background-color: #aa9a87;width: inherit;font-family: 'Monotype Corsiva';">
+    <div><a class="navbar-brand text-white pl-5 font-weight-bold" style="font-family:'Monotype Corsiva'; font-size:30px">Job Finder</a></div>
+    <ul class="navbar-nav" style="
+    flex: auto;
+    justify-content: end;
+">
         <li class="nav-item">
-            <a class="nav-link" href="{% url 'index' %}"  style="margin-left:500px">Home</a>
+            <a class="nav-link home_nav" href="/" style="">Home</a>
         </li>
 
         <li class="nav-item">
-            <a class="nav-link" href="{% url 'latest_jobs' %}">Latest Jobs</a>
+            <a class="nav-link latest_jobs" href="/latest_jobs">Latest Jobs</a>
         </li>
 
         <li class="nav-item">
-            <a class="nav-link" href="{% url 'user_login' %}">User Login</a>
+            <a class="nav-link user_login" href="/user_login">User Login</a>
         </li>
 
         <li class="nav-item">
-            <a class="nav-link" href="{% url 'recruiter_login' %}">Recruiter Login</a>
+            <a class="nav-link recruiter_login" href="/recruiter_login">Recruiter Login</a>
         </li>
 
         <li class="nav-item">
-            <a class="nav-link" href="{% url 'admin_login' %}">Admin Login</a>
+            <a class="nav-link admin_login" href="/admin_login">Admin Login</a>
         </li>
     </ul>
 </nav>
