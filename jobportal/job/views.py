@@ -359,8 +359,7 @@ def applied_candidates_list(request):
         return redirect('recruiter_login')
 
     data = Apply.objects.all()
-    data2 = JobStatus.objects.all()
-    d = {'data': data, 'data2':data2}
+    d = {'data': data}
     return render(request, 'applied_candidates_list.html', d)
 
 
@@ -420,12 +419,14 @@ def change_status_user(request, pid):
     apply = Apply.objects.get(id=pid)
     if request.method == 'POST':
         s = request.POST['status']
+        # not working properly as multiple entries created
         try:
             JobStatus.objects.create(apply=apply, jobseeker=apply.jobseeker, status=s)
             error = "no"
         except:
             error = "yes"
-    d = {'error': error}
+    js = JobStatus.objects.all()
+    d = {'apply': apply, 'js': js, 'error': error}
     return render(request, 'change_status_user.html', d)
 
 

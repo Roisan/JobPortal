@@ -5,31 +5,21 @@
 {% include 'recruiter_navigations.html' %}
 
 <div style="font-family:'Monotype Corsiva'; font-size:25px; color: white; background-color: black; text-align: center">
-    Approval Page
+    Change Status Page
 </div>
 
 <hr>
 
 <form class="container mt-5" method="post">
     {% csrf_token %}
-    <label>Name</label>
-    <input type="text" class="form-control" name="cstatus" value="{{apply.jobseeker.user.first_name}} {{apply.jobseeker.user.last_name}}" readonly>
+    <label>Jobseeker Status</label>
+    <input type="text" class="form-control" name="cstatus" value="{{jstatus.status}}">
     <label>Status</label>
     <select class="form-control" name="status">
         <option value="Accept">Accept</option>
         <option value="Reject">Reject</option>
     </select>
-    {% for i in js|slice:":1" %}
-    {% if apply.jobseeker.user.id != i.jobseeker.user.id %}
-    <input type="submit" class="btn btn-primary" style="margin-top:2%; color:white; background-color:maroon" value="Select">
-    {% else %}
-    {% for i in js|slice:":1" %}
-    {% if apply.jobseeker.user.id == i.jobseeker.user.id %}
-    <div class="btn btn-danger mt-2" style="background-color:maroon" >Decision Already Taken: {{i.status}}</div>
-    {% endif %}
-    {% endfor %}
-    {% endif %}
-    {% endfor %}
+    <input type="submit" class="btn btn-primary" style="margin-top:2%; color:white; background-color:maroon" value="Choose">
 </form>
 
 {% if error == "no" %}

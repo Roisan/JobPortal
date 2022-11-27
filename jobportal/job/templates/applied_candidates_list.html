@@ -36,8 +36,8 @@
         <td>{{i.job.title}}</td>
         <td>{{i.applydate}}</td>
         <td><a href="{{i.resume.url}}">Download Resume</a></td>
-        <td><a href="{% url 'change_status_user' i.id %}" class="btn btn-success btn-sm p-3" onclick="return confirm('Change Status?')">Change Status</a>
-            <a href="{% url 'delete_candidate' i.id %}" class="btn btn-danger btn-sm p-3" onclick="return confirm('Delete application?')">Delete</a>
+        <td><a href="{% url 'change_status_user' i.id %}" class="btn btn-success btn-sm p-2" onclick="return confirm('Change Status?')">Change Status</a>
+            <a href="{% url 'delete_candidate' i.id %}" class="btn btn-danger btn-sm p-2" onclick="return confirm('Delete application?')">Delete</a>
         </td>
         {% endif %}
         {% endfor %}
