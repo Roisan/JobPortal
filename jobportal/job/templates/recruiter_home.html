@@ -4,7 +4,7 @@
 
 {% include 'recruiter_navigations.html' %}
 
-<div style="font-family:'Monotype Corsiva'; font-size:25px; color: white; background-color: black; text-align: center">
+<div class="bef_log_page" value="recruiter_home" style="font-family:'Monotype Corsiva'; font-size:25px; color: white; background-color: black; text-align: center">
     Recruiter Profile
 </div>
 
@@ -93,6 +93,7 @@
     alert("Profile Updated");
     window.location = ('{% url 'recruiter_home' %}');
 </script>
+
 {% endif %}
 
 {% if error == "yes" %}
@@ -102,3 +103,6 @@
 {% endif %}
 
 {% endblock %}
+
+<script src="{% static 'JS/jquery.min.js' %}" type="text/javascript"></script>
+<script src="{% static 'JS/recruiter_page_js.js' %}" type="text/javascript"></script>

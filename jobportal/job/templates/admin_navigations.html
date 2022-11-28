@@ -111,7 +111,7 @@
         </div>
 
         <div class="col-sm-4 text-right" style="height: inherit;display: flex;padding-bottom: 1rem;justify-content: flex-end;align-items: flex-end;">
-            <div class="navbar-brand text-white font-weight-bold pl-5" style="font-family:'Monotype Corsiva';font-size: 20px;color: #15728a !important;padding: 0px !important;border:2px solid #f5f5dc;border-radius:5%;background:#f5f5dc;"></div>
+            <div class="navbar-brand text-white font-weight-bold pl-5" style="font-family:'Monotype Corsiva';font-size: 20px;color: #d2d2d2 !important;padding: 0px 3px 0px 0px !important;border:2px solid #f5f5dc;border-radius:5%;background:#000000;"><i class="fa fa-user pl-1"></i> Admin</div>
 
 <div style="font-weight: bold;font-size: 20px;color: #1f87a2;padding-right:1rem;">
                 <span>
@@ -136,7 +136,7 @@
     justify-content: end;
 ">
         <li class="nav-item">
-            <a class="nav-link admin_home" href="{% url 'admin_home' %}">Home</a>
+            <a class="nav-link admin_home" href="{% url 'admin_home' %}"  style="">Home</a>
         </li>
 
         <li class="nav-item dropdown">
@@ -154,7 +154,7 @@
         </li>
 
         <li class="nav-item">
-            <a class="nav-link admin_view_job" href="{% url 'job_list_admin' %}">View jobs</a>
+            <a class="nav-link job_list_admin" href="{% url 'job_list_admin' %}">View jobs</a>
         </li>
 
         <li class="nav-item">
@@ -169,3 +169,4 @@
 
 </body>
 </html>
+
