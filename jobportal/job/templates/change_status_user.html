@@ -25,7 +25,7 @@
     {% else %}
     {% for i in js|slice:":1" %}
     {% if apply.jobseeker.user.id == i.jobseeker.user.id %}
-    <div class="btn btn-danger mt-2" style="background-color:maroon" >Decision Already Taken: {{i.status}}</div>
+    <div class="btn btn-danger mt-2" style="background-color:maroon" >Decision Already Taken: {{i.status}}ed as {{i.apply.job.title}}</div>
     {% endif %}
     {% endfor %}
     {% endif %}
